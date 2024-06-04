@@ -10,7 +10,7 @@ from .forms import RegisterForm
 
 def register(request):
     data = request.data
-    message = f"Hello, {data['email']}! You have successfully registered."
+    message = 'success'
 
     form = RegisterForm({
         'email': data['email'],

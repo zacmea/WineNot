@@ -3,7 +3,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser, PermissionsMixin, UserManager
 from django.utils import timezone
 
-class CustomUserManager(UserManager):
+#Class for managing custom users
+class CustomUserManager(UserManager): # CustomUserManager inherits from UserManager
     def create_user(self, username, email, password=None, **extra_fields):
         if not email:
             raise ValueError('The Email field must be set')
@@ -18,6 +19,7 @@ class CustomUserManager(UserManager):
         extra_fields.setdefault('is_superuser', True)
         return self.create_user(username, email, password, **extra_fields)
 
+#General User class, customized to use email as the username
 class User(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length=30, blank=True)
@@ -44,6 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
+#Class for storing wine data, based on data that will be avail from Vivino API
 class Wine(models.Model):
     name = models.CharField(max_length=255)
     link = models.URLField()
@@ -57,6 +60,7 @@ class Wine(models.Model):
     def __str__(self):
         return self.name
     
+#Class for storing collections of wines
 class WineCollection(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=30)
