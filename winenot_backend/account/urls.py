@@ -4,7 +4,7 @@ from django.urls import path
 from . import api
 
 urlpatterns = [
-    path('register/', api.register, name='register'),
+    path('signup/', api.signup, name='signup'),
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

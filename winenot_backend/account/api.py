@@ -2,17 +2,17 @@ from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 
-from .forms import RegisterForm
+from .forms import SignupForm
 
 @api_view(['POST'])
 @permission_classes([]) # This is necessary to allow unauthenticated requests to sign up for an account.
 @authentication_classes([]) # This is necessary to allow unauthenticated requests to sign up for an account.
 
-def register(request):
+def signup(request):
     data = request.data
     message = 'success'
 
-    form = RegisterForm({
+    form = SignupForm({
         'email': data['email'],
         'first_name': data['first_name'],
         'last_name': data['last_name'],

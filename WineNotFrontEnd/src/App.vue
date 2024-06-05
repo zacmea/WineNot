@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto">
             <div class="flex items-center justify-between">
                 <div class="menu-left">
-                    <a href="#" class="text-xl">Left Menu</a>
+                    <a href="#" class="text-xl">Wey</a>
                 </div>
 
                 <div class="menu-center flex space-x-12" v-if="userStore.user.isAuthenticated">
@@ -56,17 +56,11 @@
 </template>
 
 <script>
-import axios from 'axios'
-import Toast from './components/Toast.vue'
-import { useToastStore } from './stores/toast'
-import { useUserStore } from './stores/user'
+    import axios from 'axios'
+    import Toast from '@/components/Toast.vue'
+    import { useUserStore } from '@/stores/user'
 
-// import { RouterLink, RouterView } from 'vue-router'
-// import HelloWorld from './components/HelloWorld.vue'
-import './index.css'
-import SignUpView from './views/SignUpView.vue'
-
-export default {
+    export default {
         setup() {
             const userStore = useUserStore()
 
@@ -85,14 +79,10 @@ export default {
             const token = this.userStore.user.access
 
             if (token) {
-                axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+                axios.defaults.headers.common["Authorization"] = "Bearer " + token;
             } else {
                 axios.defaults.headers.common["Authorization"] = "";
             }
         }
     }
-
 </script>
-
-
-

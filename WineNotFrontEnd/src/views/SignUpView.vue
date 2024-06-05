@@ -1,49 +1,57 @@
 <template>
-    <h1>SIGN UP</h1>
+    <div class="max-w-7xl mx-auto grid grid-cols-2 gap-4">
+        <div class="main-left">
+            <div class="p-12 bg-white border border-gray-200 rounded-lg">
+                <h1 class="mb-6 text-2xl text-black">SIGN UP</h1>
 
-    <p>
-        Already have an account? <RouterLink :to="{ name: 'login' }">Click here</RouterLink> to
-        login
-    </p>
-
-    <form v-on:submit.prevent="submitForm">
-        <div>
-            <label for="first_name">First Name</label>
-            <input type="text" id="first_name" v-model="form.first_name" required />
-        </div>
-        <div>
-            <label for="last_name">Last Name</label>
-            <input type="text" id="last_name" v-model="form.last_name" required />
-        </div>
-        <div>
-            <label for="email">Email</label>
-            <input type="email" id="email" v-model="form.email" required />
-        </div>
-        <div>
-            <label for="password1">Password</label>
-            <input type="password" id="password1" v-model="form.password1" required />
-        </div>
-        <div>
-            <label for="password2">Confirm Password</label>
-            <input type="password" id="password2" v-model="form.password2" required />
+                <p class="text-black">
+                    Already have an account? <RouterLink :to="{ name: 'login' }">Click here</RouterLink> to login
+                </p>
+            </div>
         </div>
 
-        <div v-if="errors.length > 0">
-            <ul>
-                <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
-            </ul>
-        </div>
+        <form @submit.prevent="submitForm" class="bg-blue-500 text-black">
+            <div>
+                <label for="first_name">First Name</label>
+                <input type="text" id="first_name" v-model="form.first_name" required class="w-full py-4 px-6 border border-gray-800 rounded-xl mb-4 mt-1"/>
+            </div>
+            <div>
+                <label for="last_name">Last Name</label>
+                <input type="text" id="last_name" v-model="form.last_name" required class="w-full py-4 px-6 border border-gray-800 rounded-xl mb-4 mt-1"/>
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" v-model="form.email" required class="w-full py-4 px-6 border border-gray-800 rounded-xl mb-4 mt-1"/>
+            </div>
+            <div>
+                <label for="password1">Password</label>
+                <input type="password" id="password1" v-model="form.password1" required class="w-full py-4 px-6 border border-gray-800 rounded-xl mb-4 mt-1"/>
+            </div>
+            <div>
+                <label for="password2">Confirm Password</label>
+                <input type="password" id="password2" v-model="form.password2" required class="w-full py-4 px-6 border border-gray-800 rounded-xl mb-4 mt-1"/>
+            </div>
 
-        <button type="submit">Sign Up</button>
-    </form>
+            <div v-if="errors.length > 0">
+                <ul>
+                    <li v-for="error in errors" :key="error">{{ error }}</li>
+                </ul>
+            </div>
+            <div>
+                <button type="submit" class="py-4 px-6 bg-purple-600 text-white rounded-xl ">Sign Up</button>
+            </div>
+        </form>
+    </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
+
+import { useToastStore } from '@/stores/toast'
 
 export default {
     setup() {
-        const toastStore = useToastStore();
+        const toastStore = useToastStore()
 
         return {
             toastStore
@@ -53,51 +61,53 @@ export default {
     data() {
         return {
             form: {
-                first_name: '',
-                last_name: '',
                 email: '',
+                name: '',
                 password1: '',
                 password2: ''
             },
-            errors: [],  //create an array to store errors to show to the user
+            errors: [],
         }
     },
 
     methods: {
         submitForm() {
-            this.errors = [];
+            this.errors = []
 
-            if (this.form.first_name === '' || this.form.last_name === '') {
-                this.errors.push('First and last name required');
-            }
             if (this.form.email === '') {
-                this.errors.push('Email is required');
+                this.errors.push('Your e-mail is missing')
             }
+
+            if (this.form.name === '') {
+                this.errors.push('Your name is missing')
+            }
+
             if (this.form.password1 === '') {
-                this.errors.push('Password is required');
+                this.errors.push('Your password is missing')
             }
-            if (this.form.password2 !== this.form.password1) {
-                this.errors.push('Passwords do not match');
+
+            if (this.form.password1 !== this.form.password2) {
+                this.errors.push('The password does not match')
             }
 
             if (this.errors.length === 0) {
                 axios
-                    .post('/api/register/', this.form)
+                    .post('/api/signup/', this.form)
                     .then(response => {
                         if (response.data.message === 'success') {
-                            this.toastStore.show(5000, 'Account created successfully', 'bg-green-500');
-                            this.form.first_name = '';
-                            this.form.last_name = '';
-                            this.form.email = '';
-                            this.form.password1 = '';
-                            this.form.password2 = '';
+                            this.toastStore.showToast(5000, 'The user is registered. Please log in', 'bg-emerald-500')
+
+                            this.form.email = ''
+                            this.form.name = ''
+                            this.form.password1 = ''
+                            this.form.password2 = ''
                         } else {
-                            this.toastStore.show(5000, 'Account creation failed', 'bg-red-500');
+                            this.toastStore.showToast(5000, 'Something went wrong. Please try again', 'bg-red-300')
                         }
                     })
                     .catch(error => {
-                        console.log('error', error);
-                    });
+                        console.log('error', error)
+                    })
             }
         }
     }
