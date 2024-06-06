@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
 import '../index.css'
 
 defineProps({
@@ -46,4 +46,4 @@ h3 {
     text-align: left;
   }
 } */
-</style>
+</style> -->
