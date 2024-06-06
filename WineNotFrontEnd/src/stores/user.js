@@ -10,8 +10,8 @@ export const useUserStore = defineStore({
         user: {
             isAuthenticated: false,
             id: null,
-            firstName: '',
-            lastName: '',
+            first_name: '',
+            last_name: '',
             email: '',
             accessToken: null,
             refreshToken: null
@@ -24,8 +24,8 @@ export const useUserStore = defineStore({
                 this.user.accessToken = localStorage.getItem('user.accessToken')
                 this.user.refreshToken = localStorage.getItem('user.refreshToken')
                 this.user.id = localStorage.getItem('user.id')
-                this.user.firstName = localStorage.getItem('user.firstName')
-                this.user.lastName = localStorage.getItem('user.lastName')
+                this.user.first_name = localStorage.getItem('user.first_name')
+                this.user.last_name = localStorage.getItem('user.last_name')
                 this.user.email = localStorage.getItem('user.email')
                 this.user.isAuthenticated = true
 
@@ -62,13 +62,13 @@ export const useUserStore = defineStore({
             console.log('setting user info', user);
 
             this.user.id = user.id
-            this.user.firstName = user.firstName
-            this.user.lastName = user.lastName
+            this.user.first_name = user.first_name
+            this.user.last_name = user.last_name
             this.user.email = user.email
 
             localStorage.setItem('user.id', user.id)
-            localStorage.setItem('user.firstName', user.firstName)
-            localStorage.setItem('user.lastName', user.lastName)
+            localStorage.setItem('user.first_name', user.first_name)
+            localStorage.setItem('user.last_name', user.last_name)
             localStorage.setItem('user.email', user.email)
 
             console.log('User store updated', this.user);

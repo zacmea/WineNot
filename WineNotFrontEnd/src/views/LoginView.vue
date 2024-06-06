@@ -8,9 +8,9 @@
                     Lorem ipsum dolor sit mate. Lorem ipsum dolor sit mate. Lorem ipsum dolor sit mate.
                     Lorem ipsum dolor sit mate. Lorem ipsum dolor sit mate. Lorem ipsum dolor sit mate.
                 </p>
-
+                    <!-- NOTE: the :to below is equivalent to v-bind:to, a shorthand for binding a value to a prop in Vue -->
                 <p class="font-bold">
-                    Don't have an account? <RouterLink :to="{'name': 'signup'}" class="underline">Click here</RouterLink> to create one!
+                    Don't have an account? <RouterLink :to="{'name': 'signup'}" class="underline">Click here</RouterLink> to create one! 
                 </p>
             </div>
         </div>

@@ -1,3 +1,5 @@
+//This file defines that stored state data for the toast component
+//The toast component is a popup that appears on the screen for a short period of time
 import {defineStore} from 'pinia'
 
 export const useToastStore = defineStore({
@@ -11,7 +13,7 @@ export const useToastStore = defineStore({
     }),
 
     actions: {
-        show({ms, message, classes}) {  // will make this popupup on screen, but not yet visible
+        show(ms, message, classes) {  // will make this popupup on screen, but not yet visible
             this.ms = parseInt(ms)
             this.message = message
             this.classes = classes

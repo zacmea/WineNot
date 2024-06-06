@@ -4,8 +4,18 @@ from rest_framework.decorators import api_view, permission_classes, authenticati
 
 from .forms import SignupForm
 
+
+@api_view(['GET'])
+def me(request):
+    return JsonResponse({
+        'id': request.user.id,
+        'first_name': request.user.first_name,
+        'email': request.user.email,
+    })
+
+
 @api_view(['POST'])
-@permission_classes([]) # This is necessary to allow unauthenticated requests to sign up for an account.
+@permission_classes([]) # This is empty to allow unauthenticated requests to sign up for an account.
 @authentication_classes([]) # This is necessary to allow unauthenticated requests to sign up for an account.
 
 def signup(request):
@@ -13,11 +23,11 @@ def signup(request):
     message = 'success'
 
     form = SignupForm({
-        'email': data['email'],
-        'first_name': data['first_name'],
-        'last_name': data['last_name'],
-        'password1': data['password1'],
-        'password2': data['password2'],
+        'email': data.get('email'),
+        'first_name': data.get('first_name'),
+        'last_name': data.get('last_name'),
+        'password1': data.get('password1'),
+        'password2': data.get('password2'),
     })
     if form.is_valid():
         form.save()

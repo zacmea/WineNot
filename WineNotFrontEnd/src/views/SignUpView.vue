@@ -61,8 +61,9 @@ export default {
     data() {
         return {
             form: {
+                first_name: '',
+                last_name: '',
                 email: '',
-                name: '',
                 password1: '',
                 password2: ''
             },
@@ -78,7 +79,7 @@ export default {
                 this.errors.push('Your e-mail is missing')
             }
 
-            if (this.form.name === '') {
+            if (this.form.first_name === '' || this.form.last_name === '') {
                 this.errors.push('Your name is missing')
             }
 
@@ -91,18 +92,20 @@ export default {
             }
 
             if (this.errors.length === 0) {
+                console.log('form', this.form);
                 axios
                     .post('/api/signup/', this.form)
                     .then(response => {
                         if (response.data.message === 'success') {
                             this.toastStore.showToast(5000, 'The user is registered. Please log in', 'bg-emerald-500')
 
+                            this.form.first_name = ''
+                            this.form.last_name = ''
                             this.form.email = ''
-                            this.form.name = ''
                             this.form.password1 = ''
                             this.form.password2 = ''
                         } else {
-                            this.toastStore.showToast(5000, 'Something went wrong. Please try again', 'bg-red-300')
+                            this.toastStore.show(5000, 'Something went wrong. Please try again', 'bg-red-300')
                         }
                     })
                     .catch(error => {
