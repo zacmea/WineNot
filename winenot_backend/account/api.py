@@ -10,22 +10,23 @@ def me(request):
     return JsonResponse({
         'id': request.user.id,
         'first_name': request.user.first_name,
+        'last_name': request.user.last_name,
         'email': request.user.email,
     })
 
 
 @api_view(['POST'])
-@permission_classes([]) # This is empty to allow unauthenticated requests to sign up for an account.
 @authentication_classes([]) # This is necessary to allow unauthenticated requests to sign up for an account.
+@permission_classes([]) # This is empty to allow unauthenticated requests to sign up for an account.
 
 def signup(request):
     data = request.data
     message = 'success'
 
     form = SignupForm({
-        'email': data.get('email'),
         'first_name': data.get('first_name'),
         'last_name': data.get('last_name'),
+        'email': data.get('email'),
         'password1': data.get('password1'),
         'password2': data.get('password2'),
     })

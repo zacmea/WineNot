@@ -13,16 +13,16 @@ export const useUserStore = defineStore({
             first_name: '',
             last_name: '',
             email: '',
-            accessToken: null,
-            refreshToken: null
+            access: null,  // access token
+            refresh: null  // refresh token
         }
     }),
 
     actions: {
         initStore() {
-            if (localStorage.getItem('user')) {
-                this.user.accessToken = localStorage.getItem('user.accessToken')
-                this.user.refreshToken = localStorage.getItem('user.refreshToken')
+            if (localStorage.getItem('user.access')) {
+                this.user.access = localStorage.getItem('user.access')
+                this.user.refresh = localStorage.getItem('user.refresh')
                 this.user.id = localStorage.getItem('user.id')
                 this.user.first_name = localStorage.getItem('user.first_name')
                 this.user.last_name = localStorage.getItem('user.last_name')
@@ -37,21 +37,20 @@ export const useUserStore = defineStore({
 
         setToken(data) {
             console.log('setting token', data);
-            this.user.accessToken = data.accessToken
-            this.user.refreshToken = data.refreshToken
-            this.user.isAuthenticated = true
-
-            localStorage.setItem('user.accessToken', data.accessToken)
-            localStorage.setItem('user.refreshToken', data.refreshToken)
+            this.user.access = data.access
+            this.user.refresh = data.refresh
+            this.user.isAuthenticated = 
+            localStorage.setItem('user.access', data.access)
+            localStorage.setItem('user.refresh', data.refresh)
         },
 
         removeToken() {
-            this.user.accessToken = null
-            this.user.refreshToken = null
+            this.user.access = null
+            this.user.refresh = null
             this.user.isAuthenticated = false
 
-            localStorage.removeItem('user.accessToken')
-            localStorage.removeItem('user.refreshToken')
+            localStorage.removeItem('user.access')
+            localStorage.removeItem('user.refresh')
             localStorage.removeItem('user.id')
             localStorage.removeItem('user.firstName')
             localStorage.removeItem('user.lastName')
@@ -75,7 +74,7 @@ export const useUserStore = defineStore({
         },
 
         refreshToken() {
-            axios.post('/api/account/refresh', {
+            axios.post('/api/refresh', {
                 refreshToken: this.user.refreshToken
             })
             .then((response) => {

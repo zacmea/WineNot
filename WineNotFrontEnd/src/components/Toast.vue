@@ -1,11 +1,11 @@
 <script setup> //This is a clue that this is the composition API, which is a new feature in Vue 3 to streamline defining components.
 import {useToastStore} from '@/stores/toast'
 
-const store = useToastStore()  //This is a store of state data.  Here it stores the toast message, classes, and isVisible.
+const store = useToastStore()  //This is a store of state data.  Here it calls up the toast message, classes, and isVisible.
 
-return {
-    store
-}
+// return {
+//     store
+// }
 </script>
 
 

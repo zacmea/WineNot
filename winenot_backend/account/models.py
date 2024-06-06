@@ -5,19 +5,30 @@ from django.utils import timezone
 
 #Class for managing custom users
 class CustomUserManager(UserManager): # CustomUserManager inherits from UserManager
-    def create_user(self, username, email, password=None, **extra_fields):
+    def _create_user(self, first_name, last_name, email, password, **extra_fields):
+        if not email:
+            raise ValueError("Sorry, that doesn't look like a valid e-mail address")
+        
+        email = self.normalize_email(email)
+        user = self.model(email=email, first_name=first_name, last_name=last_name, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+
+        return user
+    
+    def create_user(self, first_name, last_name, email, password=None, **extra_fields):
         if not email:
             raise ValueError('The Email field must be set')
         email = self.normalize_email(email)
-        user = self.model(username=username, email=email, **extra_fields)
+        user = self.model(first_name=first_name, last_name=last_name, email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
     
-    def create_superuser(self, username, email, password=None, **extra_fields):
+    def create_superuser(self, first_name, last_name, email, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
-        return self.create_user(username, email, password, **extra_fields)
+        return self.create_user(first_name, last_name, email, password, **extra_fields)
 
 #General User class, customized to use email as the username
 class User(AbstractBaseUser, PermissionsMixin):
@@ -41,7 +52,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return f'{self.first_name} {self.last_name}'
 
     def get_short_name(self):
-        return self.first_namew
+        return self.first_name
     
     def __str__(self):
         return self.email
