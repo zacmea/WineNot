@@ -71,33 +71,33 @@ export default {
             this.errors = []
 
             if (this.form.email === '') {
-                this.errors.push('Your e-mail is missing')
+                this.errors.push('e-mail required')
             }
 
             if (this.form.password === '') {
-                this.errors.push('Your password is missing')
+                this.errors.push('password required')
             }
 
             if (this.errors.length === 0) {
                 await axios
-                    .post('/api/login/', this.form)
+                    .post('/api/login/', this.form)  //the form data is sent to the backend using axios
                     .then(response => {
-                        this.userStore.setToken(response.data)
+                        this.userStore.setToken(response.data)  //in turn, the token is stored in the user store
 
                         console.log(response.data.access)
 
-                        axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.access;
+                        axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.access;  //the token is then set as a header in axios, which will be used for all future requests
                     })
                     .catch(error => {
                         console.log('error', error)
                     })
                 
                 await axios
-                    .get('/api/me/')
+                    .get('/api/me/')  //a request is made to the backend to get the user information
                     .then(response => {
-                        this.userStore.setUserInfo(response.data)
+                        this.userStore.setUserInfo(response.data)  //the user information is stored in the user store
 
-                        this.$router.push('/feed')
+                        this.$router.push('/')  //NOTE: a router push is used to navigate to a different route, similar to a redirect
                     })
                     .catch(error => {
                         console.log('error', error)
