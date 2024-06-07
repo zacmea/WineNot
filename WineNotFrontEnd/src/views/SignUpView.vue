@@ -87,17 +87,21 @@ export default {
                 this.errors.push('Your password is missing')
             }
 
+            if (this.form.password1.length < 8) {
+                this.errors.push('Your password must be at least 8 characters long')
+            }
+
             if (this.form.password1 !== this.form.password2) {
                 this.errors.push('The password does not match')
             }
 
             if (this.errors.length === 0) {
-                console.log('form', this.form);
+                // console.log('form', this.form);
                 axios
                     .post('/api/signup/', this.form)
                     .then(response => {
                         if (response.data.message === 'success') {
-                            this.toastStore.showToast(5000, 'The user is registered. Please log in', 'bg-emerald-500')
+                            this.toastStore.show(5000, 'The user is now registered. Please log in', 'bg-emerald-500')
 
                             this.form.first_name = ''
                             this.form.last_name = ''
@@ -105,6 +109,7 @@ export default {
                             this.form.password1 = ''
                             this.form.password2 = ''
                         } else {
+                            alert("Something went wrong.  Try checking that your password isn't too common and doesn't contain your name or email address.")
                             this.toastStore.show(5000, 'Something went wrong. Please try again', 'bg-red-300')
                         }
                     })

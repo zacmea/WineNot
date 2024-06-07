@@ -5,6 +5,7 @@ from rest_framework.decorators import api_view, permission_classes, authenticati
 from .forms import SignupForm
 
 
+
 @api_view(['GET'])
 def me(request):
     return JsonResponse({
@@ -18,7 +19,6 @@ def me(request):
 @api_view(['POST'])
 @authentication_classes([]) # This is necessary to allow unauthenticated requests to sign up for an account.
 @permission_classes([]) # This is empty to allow unauthenticated requests to sign up for an account.
-
 def signup(request):
     data = request.data
     message = 'success'
@@ -33,6 +33,7 @@ def signup(request):
     if form.is_valid():
         form.save()
     else:
-        message = "There was an error with your registration."
+        message = f"There was an error with your registration: {form.errors}"
+        print (form.errors)
 
     return JsonResponse({'message': message})

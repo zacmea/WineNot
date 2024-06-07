@@ -25,7 +25,7 @@
 
                     <div>
                         <label>Password</label><br>
-                        <input type="password" v-model="form.password" placeholder="Your password" class="w-full mt-2 py-4 px-6 border border-gray-200 rounded-lg">
+                        <input type="password" v-model="form.password" class="w-full mt-2 py-4 px-6 border border-gray-200 rounded-lg">
                     </div>
 
                     <template v-if="errors.length > 0">

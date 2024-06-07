@@ -6,6 +6,8 @@ const imageURL = ref('https://i.imgur.com/w398AJB.jpeg');
 
 </script>
 
+<!-- TURN THE BELOW INTO A CARD, using v-card, v-img, v-card-title, v-card-text, v-card-actions, v-btn -->
+
 <template>
     <div class="rounded-lg bg-slate-500 p-5 grid-rows-5 rows-5 columns-2 grid-flow-col gap-4">
 
