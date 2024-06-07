@@ -74,7 +74,7 @@ export const useUserStore = defineStore({
             console.log('User store updated', this.user);
         },
 
-        refreshToken() {
+        refreshToken() {  //this will keep the user logged in
             axios.post('/api/refresh/', {
                 refresh: this.user.refresh
             })

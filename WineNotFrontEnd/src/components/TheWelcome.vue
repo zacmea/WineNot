@@ -1,20 +1,11 @@
-<script setup>
-import WelcomeItem from './WelcomeItem.vue'
-import DocumentationIcon from './icons/IconDocumentation.vue'
-import ToolingIcon from './icons/IconTooling.vue'
-import EcosystemIcon from './icons/IconEcosystem.vue'
-import CommunityIcon from './icons/IconCommunity.vue'
-import SupportIcon from './icons/IconSupport.vue'
-</script>
-
 <template>
 
-    <body class="bg-blue-400 text-center text-3xl">
-        <template v-if="currentUser">
-            <h1>Welcome, {{ currentUser.name }}!</h1>
+    <body class="bg-blue-300 text-center text-3xl rounded-lg">
+        <template v-if="userStore.user.isAuthenticated">
+            <h1>Welcome, {{ userStore.user.first_name }}!</h1>
             <div>
-                <a class="a" href="/collexns">View your collections</a>
-                <a class="a" href="/wines">Browse wines</a>
+                <RouterLink to="/collexns">View your collections</RouterLink>
+                <RouterLink to="/wines">Browse wines</RouterLink>
             </div>
         </template>
         <template v-else>
@@ -23,9 +14,41 @@ import SupportIcon from './icons/IconSupport.vue'
             <h2>Wanna talk about wines?  Wine not!</h2>
             </div>
             <div>
-                <RouterLink to="/login" class="mr-4 py-4 px-6 bg-gray-600 text-white rounded-lg">Log in</RouterLink>
-                <RouterLink to="/signup" class="py-4 px-6 bg-purple-600 text-white rounded-lg">Sign up</RouterLink>
+                <RouterLink to="/login" class="mr-4 py-4 px-6 bg-green-600 text-white rounded-lg">Log in</RouterLink>
+                <RouterLink to="/signup" class="py-4 px-6 bg-blue-600 text-white rounded-lg">Sign up</RouterLink>
             </div>
         </template>
     </body>
 </template>
+
+<script>
+    import axios from 'axios'
+    import Toast from '@/components/Toast.vue'
+    import { useUserStore } from '@/stores/user'
+
+    export default {
+        setup() {
+            const userStore = useUserStore()
+
+            return {
+                userStore
+            }
+        },
+
+        components: {
+            Toast
+        },
+
+        beforeCreate() {
+            this.userStore.initStore()
+
+            const token = this.userStore.user.access
+
+            if (token) {
+                axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+            } else {
+                axios.defaults.headers.common["Authorization"] = "";
+            }
+        }
+    }
+</script>
