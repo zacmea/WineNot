@@ -1,9 +1,7 @@
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
-from rest_framework.parsers import JSONParser
-
-from .serializers import WineSerializer, CollexnSerializer
 from .models import Collexn, Wine
+from .serializers import CollexnSerializer, WineSerializer
 from .forms import CollexnForm
 
 @api_view(['GET'])
@@ -24,7 +22,7 @@ def collexn_detail(request, pk):
 
 @api_view(['POST'])
 def collexn_create(request):
-    data = JSONParser().parse(request)
+    data = request.data
     data['created_by'] = request.user.id
     
     # Collect wine data and create wine instances
@@ -50,5 +48,3 @@ def collexn_create(request):
     else:
         print(form.errors)
         return JsonResponse({'error': 'oops, form not valid'}, status=400)
-    
-
