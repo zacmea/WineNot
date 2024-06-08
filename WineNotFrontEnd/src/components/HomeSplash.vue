@@ -1,11 +1,18 @@
 <template>
 
-    <body class="bg-blue-300 text-center text-3xl rounded-lg">
+    <body >
         <template v-if="userStore.user.isAuthenticated">
-            <h1>Welcome, {{ userStore.user.first_name }}!</h1>
-            <div>
-                <RouterLink to="/collexns">View your collections</RouterLink>
-                <RouterLink to="/wines">Browse wines</RouterLink>
+            <div class="bg-blue-300 text-center text-3xl rounded-lg pb-6">
+            <h1 class="py-4">Welcome, {{ userStore.user.first_name }}!</h1>
+            <h2 class="text-2xl pb-4">Wanna plan for some wine-ing? Wine not!</h2>
+            
+            <hr class="border-1">
+            <br>
+            
+                <RouterLink class="bg-blue-700 rounded-xl px-2 py-1 mt-10" to="/lists">view your wine lists</RouterLink>
+                <br>
+                <br>
+                <RouterLink class="bg-blue-700 rounded-xl px-2 py-1 my-10" to="/search">search & browse wines</RouterLink>
             </div>
         </template>
         <template v-else>

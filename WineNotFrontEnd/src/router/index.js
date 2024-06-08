@@ -1,41 +1,60 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import SignUpView from '../views/SignUpView.vue'
-import LoginView from '../views/LoginView.vue'
-import WineDetailsTile from '../components/WineDetailsTile.vue'
+import { createRouter, createWebHistory } from "vue-router";
+import HomeView from "../views/HomeView.vue";
+import SignUpView from "../views/SignUpView.vue";
+import LoginView from "../views/LoginView.vue";
+import WineDetailsTile from "../components/WineDetailsTile.vue";
+import WineLists from "../components/ListOfCollexns.vue";
+import WineListIndexView from "@/views/WineListIndexView.vue";
+import ListOfCollexns from "../components/ListOfCollexns.vue";
+import CollexnDetail from "../components/CollexnDetail.vue"; // Import the new component
+import AboutView from "@/views/AboutView.vue";
+import UserProfile from "@/components/UserProfile.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
-            path: '/winetile',
-            name: 'winetile',
-            component: WineDetailsTile
+            path: "/",
+            name: "home",
+            component: HomeView,
         },
         {
-            path: '/',
-            name: 'home',
-            component: HomeView
+            path: "/signup",
+            name: "signup",
+            component: SignUpView,
         },
         {
-            path: '/signup',
-            name: 'signup',
-            component: SignUpView
+            path: "/login",
+            name: "login",
+            component: LoginView,
         },
         {
-            path: '/login',
-            name: 'login',
-            component: LoginView
+            path: "/about",
+            name: "about",
+            component: AboutView,
         },
         {
-            path: '/about',
-            name: 'about',
-            // route level code-splitting
-            // this generates a separate chunk (About.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () => import('../views/AboutView.vue')
-        }
-    ]
-})
+            path: "/profile",
+            name: "profile",
+            component: UserProfile,
+        },
+        {
+            path: "/winetile",
+            name: "winetile",
+            component: WineDetailsTile,
+        },
+        {
+            path: "/collexns",
+            name: "collexns",
+            component: ListOfCollexns,
+        },
+        {
+            path: "/collexn/:id",
+            name: "collexn-detail",
+            component: CollexnDetail,
+            props: true,
+        },
+    ],
+});
 
-export default router
+export default router;

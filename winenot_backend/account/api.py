@@ -3,7 +3,8 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 
 from .forms import SignupForm
-
+from .serializers import UserSerializer
+from .models import User
 
 
 @api_view(['GET'])
@@ -14,7 +15,6 @@ def me(request):
         'last_name': request.user.last_name,
         'email': request.user.email,
     })
-
 
 @api_view(['POST'])
 @authentication_classes([]) # This is necessary to allow unauthenticated requests to sign up for an account.

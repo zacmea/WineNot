@@ -5,8 +5,7 @@
                 <h1 class="mb-6 text-2xl">Log in</h1>
 
                 <p class="mb-6 text-gray-500">
-                    Lorem ipsum dolor sit mate. Lorem ipsum dolor sit mate. Lorem ipsum dolor sit mate.
-                    Lorem ipsum dolor sit mate. Lorem ipsum dolor sit mate. Lorem ipsum dolor sit mate.
+                    Welcome back! Wine not log in and plan for some wine-ing?
                 </p>
                     <!-- NOTE: the :to below is equivalent to v-bind:to, a shorthand for binding a value to a prop in Vue -->
                 <p class="font-bold">
