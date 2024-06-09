@@ -42,7 +42,7 @@
                         </svg>
                     </RouterLink>
 
-                    <a href="#">
+                    <RouterLink to="/search">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -57,27 +57,35 @@
                                 d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
                             ></path>
                         </svg>
-                    </a>
+                    </RouterLink>
                 </div>
                 <!-- NOTE: this part controls the profile image and/or login/signup buttons -->
                 <div class="menu-right">
                     <template v-if="userStore.user.isAuthenticated">
-                        <RouterLink to="/profile">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                                stroke="currentColor"
-                                class="size-9"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                                />
-                            </svg>
-                        </RouterLink>
+                            <div class="relative inline-block text-left" @click="toggleDropdown">
+                            <RouterLink to="#">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    class="size-9"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                                    />
+                                </svg>
+                            </RouterLink>
+                        <div v-if="dropdownOpen" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                <router-link to="/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Profile</router-link>
+                <a @click="logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer" role="menuitem">Log Out</a>
+            </div>
+        </div>
+    </div>    
                     </template>
 
                     <template v-else>
@@ -110,6 +118,21 @@ import { useUserStore } from "@/stores/user";
 import { RouterLink } from "vue-router";
 
 export default {
+    data() {
+        return {
+            dropdownOpen: false,
+        };
+    },
+    methods: {
+        toggleDropdown() {
+            this.dropdownOpen = !this.dropdownOpen;
+        },
+        logout() {
+            this.userStore.removeToken();
+            this.$router.push('/login');
+        },
+    },
+
     setup() {
         const userStore = useUserStore();
 

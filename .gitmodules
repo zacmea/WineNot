@@ -1,0 +1,3 @@
+[submodule "vivino-api"]
+	path = vivino-api
+	url = https://github.com/zacmea/vivino-api.git

@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from django.contrib.auth import logout
 
 from .forms import SignupForm
 from .serializers import UserSerializer
@@ -16,9 +17,15 @@ def me(request):
         'email': request.user.email,
     })
 
+# @api_view(['POST'])
+# def logout_view(request):
+#     logout(request)
+#     return JsonResponse({'message': 'Logged out successfully'})
+
+
 @api_view(['POST'])
-@authentication_classes([]) # This is necessary to allow unauthenticated requests to sign up for an account.
-@permission_classes([]) # This is empty to allow unauthenticated requests to sign up for an account.
+@authentication_classes([]) 
+@permission_classes([]) # These 2 are empty to allow unauthenticated requests to sign up for an account.
 def signup(request):
     data = request.data
     message = 'success'
