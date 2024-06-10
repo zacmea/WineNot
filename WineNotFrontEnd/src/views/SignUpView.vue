@@ -1,35 +1,40 @@
 <template>
-    <div class="max-w-7xl mx-auto grid grid-cols-2 gap-4">
+    <div class="mx-auto flex flex-col gap-4">
         <div class="main-left">
-            <div class="p-12 bg-white border border-gray-200 rounded-lg">
-                <h1 class="mb-6 text-2xl text-black">SIGN UP</h1>
+            <div class="px-10 py-5 bg-white border border-gray-200 rounded-lg">
+                <h1 class="mb-4 text-2xl text-center text-black font-semibold">SIGN UP</h1>
 
-                <p class="text-black">
-                    Already have an account? <RouterLink :to="{ name: 'login' }">Click here</RouterLink> to login
+                <p class="text-black max-w-7xl">
+                    Already have an account? <RouterLink :to="{ name: 'login' }" class="underline">Click here</RouterLink> to login
                 </p>
             </div>
         </div>
 
-        <form @submit.prevent="submitForm" class="bg-blue-500 text-black">
+        <form @submit.prevent="submitForm" class="bg-blue-100 pl-5  rounded-lg pt-3 text-black">
             <div>
                 <label for="first_name">First Name</label>
-                <input type="text" id="first_name" v-model="form.first_name" required class="w-full py-4 px-6 border border-gray-800 rounded-xl mb-4 mt-1"/>
+                <br>
+                <input type="text" id="first_name" v-model="form.first_name" required class="w-5/6 py-3 px-4 border  rounded-xl mb-4 mt-1"/>
             </div>
             <div>
                 <label for="last_name">Last Name</label>
-                <input type="text" id="last_name" v-model="form.last_name" required class="w-full py-4 px-6 border border-gray-800 rounded-xl mb-4 mt-1"/>
+                <br>
+                <input type="text" id="last_name" v-model="form.last_name" required class="w-5/6 py-3 px-4 border  rounded-xl mb-4 mt-1"/>
             </div>
             <div>
                 <label for="email">Email</label>
-                <input type="email" id="email" v-model="form.email" required class="w-full py-4 px-6 border border-gray-800 rounded-xl mb-4 mt-1"/>
+                <br>
+                <input type="email" id="email" v-model="form.email" required class="w-5/6 py-3 px-4 border  rounded-xl mb-4 mt-1"/>
             </div>
             <div>
                 <label for="password1">Password</label>
-                <input type="password" id="password1" v-model="form.password1" required class="w-full py-4 px-6 border border-gray-800 rounded-xl mb-4 mt-1"/>
+                <br>
+                <input type="password" id="password1" v-model="form.password1" required class="w-5/6 py-3 px-4 border  rounded-xl mb-4 mt-1"/>
             </div>
             <div>
                 <label for="password2">Confirm Password</label>
-                <input type="password" id="password2" v-model="form.password2" required class="w-full py-4 px-6 border border-gray-800 rounded-xl mb-4 mt-1"/>
+                <br>
+                <input type="password" id="password2" v-model="form.password2" required class="w-5/6 py-3 px-4 border  rounded-xl mb-4 mt-1"/>
             </div>
 
             <div v-if="errors.length > 0">
@@ -38,7 +43,7 @@
                 </ul>
             </div>
             <div>
-                <button type="submit" class="py-4 px-6 bg-purple-600 text-white rounded-xl ">Sign Up</button>
+                <button type="submit" class="py-3 px-6 mb-3 bg-blue-600 text-white rounded-xl ">Sign Up</button>
             </div>
         </form>
     </div>

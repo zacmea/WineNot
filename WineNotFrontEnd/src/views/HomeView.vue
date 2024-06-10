@@ -8,6 +8,6 @@ import HomeSplash from '../components/HomeSplash.vue';
   <main>
     
     <HomeSplash />
-    <h1>Some randomly generated wine might go here</h1>
+    <!-- <h1>Some randomly generated wine might go here</h1> -->
   </main>
 </template>

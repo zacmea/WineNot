@@ -26,9 +26,9 @@ SECRET_KEY = 'django-insecure-=y5@_ddwbn74c4sh#7nccp5z0unn+1zjkmsx3(1y=&hq2@&0r)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['api.winenot.com']
 
-WEBSITE_URL = 'http://localhost:8000'
+WEBSITE_URL = 'http://winenot.com'
 
 
 # Application definition
@@ -51,17 +51,11 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:8000",
-    "http://localhost:8080",
-    "http://localhost:5173",
+    "http://winenot.com",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:8000",
-    "http://localhost:8080",
-    "http://localhost:5173",
+    "http://winenot.com"
     ]
 
 INSTALLED_APPS = [

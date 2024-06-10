@@ -48,3 +48,12 @@ def collexn_create(request):
     else:
         print(form.errors)
         return JsonResponse({'error': 'oops, form not valid'}, status=400)
+    
+@api_view(['DELETE'])
+def collexn_delete(request, pk):
+    try:
+        collexn = Collexn.objects.get(pk=pk)
+        collexn.delete()
+        return JsonResponse({'message': 'Collection deleted successfully'}, status=204)
+    except Collexn.DoesNotExist:
+        return JsonResponse({'error': 'Collection not found'}, status=404)

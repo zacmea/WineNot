@@ -1,9 +1,9 @@
 <template>
     <div v-if="userStore.user.isAuthenticated">
-        <div class="bg-blue-300 text-center text-3xl rounded-lg pb-6">
+        <div class="bg-blue-200 text-center text-3xl rounded-lg pb-6">
             <h1 class="py-4">Profile</h1>
-            <p class="text-2xl pb-4">First Name: {{ profile.first_name }}</p>
-            <p class="text-2xl pb-4">Last Name: {{ profile.last_name }}</p>
+            <p class="text-2xl pb-4">Name: {{ profile.first_name }} {{profile.last_name}}</p>
+            <!-- <p class="text-2xl pb-4"> -->
             <p class="text-2xl pb-4">Email: {{ profile.email }}</p>
         </div>
     </div>

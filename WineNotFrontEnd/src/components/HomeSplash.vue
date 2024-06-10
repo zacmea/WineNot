@@ -4,15 +4,15 @@
         <template v-if="userStore.user.isAuthenticated">
             <div class="bg-blue-200 text-center text-3xl rounded-lg pb-6">
             <h1 class="py-4">Welcome, {{ userStore.user.first_name }}!</h1>
-            <h2 class="text-2xl pb-4">Wanna plan for some wine-ing? Wine not!</h2>
+            <h2 class="text-xl pb-4">Wanna plan for some wine-ing?<br> Wine not!</h2>
             
             <hr class="border-1">
             <br>
             
-                <RouterLink class=" border-2 border-blue-600 rounded-xl px-2 py-1 mt-10 pb-1.5" to="#">using the app</RouterLink>
+                <RouterLink class=" border-2 border-blue-600 rounded-xl px-2 py-1 mt-10 pb-1.5 text-xl " to="#">using the app</RouterLink>
                 <br>
                 <br>
-                <RouterLink class=" border-2 border-blue-600 rounded-xl px-2 py-1 mt-10 pb-1.5" to="/about">about this project</RouterLink>
+                <RouterLink class=" border-2 border-blue-600 rounded-xl px-2 py-1 mt-10 pb-1.5 text-xl" to="/about">about this project</RouterLink>
             </div>
         </template>
         <template v-else>
@@ -20,10 +20,10 @@
             <h1>Welcome!</h1>
             <h2>Wanna talk about wines?  Wine not!</h2>
             </div>
-            <div>
+            <!-- <div>
                 <RouterLink to="/login" class="mr-4 py-4 px-6 bg-green-600 text-white rounded-lg">Log in</RouterLink>
                 <RouterLink to="/signup" class="py-4 px-6 bg-blue-600 text-white rounded-lg">Sign up</RouterLink>
-            </div>
+            </div> -->
         </template>
     </body>
 </template>
