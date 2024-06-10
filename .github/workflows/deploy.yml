@@ -20,4 +20,4 @@ jobs:
 
       - name: Copy files to server
         run: |
-          rsync -avz -e "ssh -o StrictHostKeyChecking=no" --exclude='.git' ./ winenotuser@104.248.228.41:/webapps/winenot/github_test/
+          rsync -avz -e "ssh -o StrictHostKeyChecking=no" --exclude='.git' ./ winenotuser@104.248.228.41:/webapps/winenot/
