@@ -30,7 +30,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = []
 
-WEBSITE_URL = 'https://django-app-4ubj.onrender.com'
+WEBSITE_URL = 'https://main--wine-not.netlify.app/'
 
 
 # Application definition
