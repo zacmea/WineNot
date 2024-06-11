@@ -30,7 +30,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = []
 
-WEBSITE_URL = 'http://localhost:8000'
+WEBSITE_URL = 'https://django-app-4ubj.onrender.com'
 
 
 # Application definition
