@@ -30,7 +30,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['localhost']
 
-WEBSITE_URL = 'https://wine-not.netlify.app/'
+WEBSITE_URL = 'localhost:5173'
 
 
 # Application definition
