@@ -8,7 +8,7 @@
                     Welcome back! Wine not log in and plan for some wine-ing?
                 </p>
                 <!-- NOTE: the :to below is equivalent to v-bind:to, a shorthand for binding a value to a prop in Vue -->
-                <p class="">
+                <p class="text-center">
                     Don't have an account?
                     <RouterLink :to="{ name: 'signup' }" class="underline">Click here</RouterLink>
                     to create one!

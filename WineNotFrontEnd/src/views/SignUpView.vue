@@ -4,7 +4,7 @@
             <div class="px-10 py-5 bg-white border border-gray-200 rounded-lg">
                 <h1 class="mb-4 text-2xl text-center text-black font-semibold">SIGN UP</h1>
 
-                <p class="text-black max-w-7xl">
+                <p class="text-black max-w-7xl text-center">
                     Already have an account? <RouterLink :to="{ name: 'login' }" class="underline">Click here</RouterLink> to login
                 </p>
             </div>
