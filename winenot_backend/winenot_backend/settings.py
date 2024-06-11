@@ -30,7 +30,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = []
 
-WEBSITE_URL = 'https://main--wine-not.netlify.app/'
+WEBSITE_URL = 'https://wine-not.netlify.app/'
 
 
 # Application definition
@@ -119,7 +119,7 @@ WSGI_APPLICATION = 'winenot_backend.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgres://winenotuser:cclQ3MJQslBOZwgRmHn0tNDC9dEDv9RN@dpg-cpk91fvsc6pc73ep6s8g-a.ohio-postgres.render.com/winenotdb_ts40',
+        default='postgres://django_app_db_p0lm_user:mFUdWdpT4kXyMh833Qi8hhtVm0lrJTQl@dpg-cpkaglq0si5c73cngoog-a/django_app_db_p0lm',
         conn_max_age=600
     )
 }
