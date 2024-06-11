@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-=y5@_ddwbn74c4sh#7nccp5z0unn+1zjkmsx3(1y=&hq2@&0r)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [localhost]
 
 WEBSITE_URL = 'https://wine-not.netlify.app/'
 
