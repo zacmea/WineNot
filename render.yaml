@@ -6,8 +6,8 @@ services:
     name: django-app
     runtime: python
     repo: https://github.com/zacmea/WineNot
-    buildCommand: "./build.sh"
-    startCommand: "python -m gunicorn winenot_backend.asgi:application -k uvicorn.workers.UvicornWorker"
+    buildCommand: "cd winenot_backend && ./build.sh"
+    startCommand: "cd winenot_backend && python -m gunicorn winenot_backend.asgi:application -k uvicorn.workers.UvicornWorker"
     envVars:
       - key: DATABASE_URL # Sets DATABASE_URL to the connection string of the django-app-db database
         fromDatabase:
