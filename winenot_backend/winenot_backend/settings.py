@@ -30,9 +30,11 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', 'api.winenot.com', 'wine-not.netlify.app']
 
-#Url for the frontend
-WEBSITE_URL = 'wine-not.netlify.app'
+# #Url for the frontend during deployment
+# WEBSITE_URL = 'wine-not.netlify.app'
 
+#Url for the frontend during development
+WEBSITE_URL = 'http://localhost:5173'
 
 
 # Application definition
