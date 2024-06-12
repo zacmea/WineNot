@@ -26,11 +26,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=y5@_ddwbn74c4sh#7nccp5z0unn+1zjkmsx3(1y=&hq2@&0r)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', 'api.winenot.com']
 
+#Url for the frontend
 WEBSITE_URL = 'localhost:5173'
+
 
 
 # Application definition
@@ -52,14 +54,14 @@ REST_FRAMEWORK = {
     )
 }
 
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
 
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:3000",
-#     "http://localhost:8000",
-#     "http://localhost:8080",
-#     "http://localhost:5173",
-# ]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "http://localhost:8080",
+    "http://localhost:5173",
+]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
@@ -74,7 +76,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    # 'django.contrib.staticfiles',
     'account',
     'collexn',
     'rest_framework',
@@ -112,19 +114,29 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'winenot_backend.wsgi.application'
+# WSGI_APPLICATION = 'winenot_backend.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default='postgres://django_app_db_p0lm_user:mFUdWdpT4kXyMh833Qi8hhtVm0lrJTQl@dpg-cpkaglq0si5c73cngoog-a/django_app_db_p0lm',
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        **dj_database_url.config(
+            default='postgres://django_app_db_p0lm_user:mFUdWdpT4kXyMh833Qi8hhtVm0lrJTQl@dpg-cpkaglq0si5c73cngoog-a.oregon-postgres.render.com/django_app_db_p0lm',
+            conn_max_age=600
+        )
+    }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'winenot'
+#     }
+# }
 
 
 
@@ -158,7 +170,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+'''
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
@@ -178,3 +190,4 @@ if not DEBUG:
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+'''
