@@ -70,13 +70,14 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     ]
 
+#HEY DEVS: Comment out the django.contrib.saticfiles line to run the app locally.
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    # 'django.contrib.staticfiles',
+    'django.contrib.staticfiles',
     'account',
     'collexn',
     'rest_framework',
@@ -171,6 +172,7 @@ USE_I18N = True
 USE_TZ = True
 
 
+# HEY RENDER USERS: Uncomment the following line to enable HTTPS on your Render deployment.  To run it locally comment it out.
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
