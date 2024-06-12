@@ -185,13 +185,13 @@ USE_I18N = True
 USE_TZ = True
 
 
-# HEY RENDER USERS: Uncomment the following line to enable HTTPS on your Render deployment.  To run it locally comment it out.
+# HEY RENDER USERS: Uncomment the following SECTION to enable HTTPS on your Render deployment.  To run it locally comment it out.
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 # This setting informs Django of the URI path from which your static files will be served to users
 # Here, they well be accessible at your-domain.onrender.com/static/... or yourcustomdomain.com/static/...
-STATIC_URL = '/static/'
+STATIC_URL = 'wine-not.netlify.app/static/'
 
 # This production code might break development mode, so we check whether we're in DEBUG mode
 if not DEBUG:
