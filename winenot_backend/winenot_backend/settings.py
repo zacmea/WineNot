@@ -26,12 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=y5@_ddwbn74c4sh#7nccp5z0unn+1zjkmsx3(1y=&hq2@&0r)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', 'api.winenot.com']
+ALLOWED_HOSTS = ['localhost', 'api.winenot.com', 'wine-not.netlify.app']
 
 #Url for the frontend
-WEBSITE_URL = 'localhost:5173'
+WEBSITE_URL = 'wine-not.netlify.app'
 
 
 
@@ -57,6 +57,7 @@ REST_FRAMEWORK = {
 # CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOWED_ORIGINS = [
+    "http://wine-not.netlify.app",
     "http://localhost:3000",
     "http://localhost:8000",
     "http://localhost:8080",
@@ -64,6 +65,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
+    "http://wine-not.netlify.app",
     "http://localhost:3000",
     "http://localhost:8000",
     "http://localhost:10000",
@@ -120,16 +122,27 @@ TEMPLATES = [
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+#For running fully in production:
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         **dj_database_url.config(
-            default='postgres://django_app_db_p0lm_user:mFUdWdpT4kXyMh833Qi8hhtVm0lrJTQl@dpg-cpkaglq0si5c73cngoog-a.oregon-postgres.render.com/django_app_db_p0lm',
+            default='postgres://django_app_db_p0lm_user:mFUdWdpT4kXyMh833Qi8hhtVm0lrJTQl@dpg-cpkaglq0si5c73cngoog-a/django_app_db_p0lm',
             conn_max_age=600
         )
     }
 }
+
+#For running locally but using the production database:
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         **dj_database_url.config(
+#             default='postgres://django_app_db_p0lm_user:mFUdWdpT4kXyMh833Qi8hhtVm0lrJTQl@dpg-cpkaglq0si5c73cngoog-a.oregon-postgres.render.com/django_app_db_p0lm',
+#             conn_max_age=600
+#         )
+#     }
+# }
 
 # For running locally:  (Make sure to create a database called 'winenot' and have it running)
 # DATABASES = {
@@ -182,11 +195,11 @@ STATIC_URL = '/static/'
 
 # This production code might break development mode, so we check whether we're in DEBUG mode
 if not DEBUG:
-    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
     # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
     # and renames the files with unique names for each version to support long-term caching
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
