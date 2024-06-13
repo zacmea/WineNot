@@ -49,11 +49,11 @@ export default {
       try {
         const response = await axios.get(`/api/collexns/${this.id}/`);
         this.collexn = response.data;
-        this.loading = false;
+        // this.loading = false;
       } catch (error) {
         console.error(error);
         this.error = 'Failed to load collection details.';
-        this.loading = false;
+        // this.loading = false;
       }
     },
     async removeWine(wineId) {
