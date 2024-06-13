@@ -18,7 +18,7 @@ from dotenv import load_dotenv, find_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv(find_dotenv())
+# load_dotenv(find_dotenv())
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -127,7 +127,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         **dj_database_url.config(
-            default='postgres://django_app_db_p0lm_user:mFUdWdpT4kXyMh833Qi8hhtVm0lrJTQl@dpg-cpkaglq0si5c73cngoog-a/django_app_db_p0lm',
+            default='postgres://winenot_user:6fRsKRhk8H5uCK7cHDvUTF5ZsAzztexv@dpg-cplloojgbbvc738qiae0-a/winenot',
             conn_max_age=600
         )
     }
