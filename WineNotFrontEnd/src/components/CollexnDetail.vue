@@ -36,7 +36,9 @@ export default {
   props: ['id'],
   data() {
     return {
-      collexn: null
+      collexn: null,
+      loading: true,
+      error: null,
     }
   },
   async mounted() {
@@ -45,10 +47,13 @@ export default {
   methods: {
     async getCollexnDetail() {
       try {
-        const response = await axios.get(`/api/collexns/${this.id}`);
+        const response = await axios.get(`/api/collexns/${this.id}/`);
         this.collexn = response.data;
+        this.loading = false;
       } catch (error) {
         console.error(error);
+        this.error = 'Failed to load collection details.';
+        this.loading = false;
       }
     },
     async removeWine(wineId) {
@@ -57,6 +62,7 @@ export default {
         this.collexn.wines = this.collexn.wines.filter(wine => wine.id !== wineId);
       } catch (error) {
         console.error(error);
+        alert('Failed to remove wine from the collection.');
       }
     }
   }
