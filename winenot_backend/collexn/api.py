@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 from .models import Collexn, Wine
 from .serializers import CollexnSerializer, WineSerializer
 from .forms import CollexnForm
+from django.shortcuts import get_object_or_404
 
 @api_view(['GET'])
 def collexn_list(request):
@@ -57,3 +58,10 @@ def collexn_delete(request, pk):
         return JsonResponse({'message': 'Collection deleted successfully'}, status=204)
     except Collexn.DoesNotExist:
         return JsonResponse({'error': 'Collection not found'}, status=404)
+
+@api_view(['POST'])
+def remove_wine_from_collexn(request, pk, wine_id):
+    collexn = get_object_or_404(Collexn, pk=pk)
+    wine = get_object_or_404(Wine, id=wine_id)
+    collexn.wines.remove(wine)
+    return JsonResponse({'status': 'success', 'message': 'Wine removed from collection'})
