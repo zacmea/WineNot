@@ -9,5 +9,5 @@ urlpatterns = [
     path('create/', api.collexn_create, name='collexn_create'),
     path('<pk>/', api.collexn_detail, name='collexn_detail'),
     path('<pk>/delete/', api.collexn_delete, name='collexn_delete'),
-    path('api/collexns/<pk>/remove_wine/<wine_id>/', remove_wine_from_collexn, name='remove_wine_from_collexn'),
+    path('api/collexns/<pk>/remove_wine/<wine_id>/', api.remove_wine_from_collexn, name='remove_wine_from_collexn'),
 ]
