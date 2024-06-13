@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
-from .models import Collexn, Wine
+from .models import Collexn, Wine, CollexnWine
 from .serializers import CollexnSerializer, WineSerializer
 from .forms import CollexnForm
 from django.shortcuts import get_object_or_404
@@ -42,7 +42,10 @@ def collexn_create(request):
         collexn = form.save(commit=False)
         collexn.created_by = request.user
         collexn.save()
-        collexn.wines.set(wine_ids)  # Associate the created wines with the collexn
+
+        # Associate the created wines with the collexn using the join table
+        for wine_id in wine_ids:
+            CollexnWine.objects.create(collexn=collexn, wine_id=wine_id)
         
         serializer = CollexnSerializer(collexn)
         return JsonResponse(serializer.data, safe=False)
@@ -62,6 +65,6 @@ def collexn_delete(request, pk):
 @api_view(['POST'])
 def remove_wine_from_collexn(request, pk, wine_id):
     collexn = get_object_or_404(Collexn, pk=pk)
-    wine = get_object_or_404(Wine, id=wine_id)
-    collexn.wines.remove(wine)
+    wine = get_object_or_404(Wine, pk=wine_id)
+    CollexnWine.objects.filter(collexn=collexn, wine=wine).delete()
     return JsonResponse({'status': 'success', 'message': 'Wine removed from collection'})
