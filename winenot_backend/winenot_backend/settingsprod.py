@@ -27,12 +27,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=y5@_ddwbn74c4sh#7nccp5z0unn+1zjkmsx3(1y=&hq2@&0r)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'api.winenot.com', 'wine-not.netlify.app']
+ALLOWED_HOSTS = ['localhost', 'api.winenot.com', 'wine-not.netlify.app', 'django-app-4ubj.onrender.com', 'dpg-cplloojgbbvc738qiae0-a']
 
-#Url for the frontend
+#Url for the frontend during deployment
 WEBSITE_URL = 'http://wine-not.netlify.app'
+
+# #Url for the frontend during development
+# WEBSITE_URL = 'http://localhost:5173'
 
 
 
