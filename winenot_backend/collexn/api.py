@@ -128,6 +128,6 @@ def collexn_delete(request, pk):
     except Collexn.DoesNotExist:
         return JsonResponse({'error': 'Collection not found'}, status=404)
     
-@api_view(['GET'])
-def remove_wine_from_collexn(request, pk, wine_id):
-    print(pk, wine_id)
+# @api_view(['GET'])
+# def remove_wine_from_collexn(request, pk, wine_id):
+#     print(pk, wine_id)
