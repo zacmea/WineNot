@@ -134,7 +134,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         **dj_database_url.config(
-            default='postgres://winenot_user:6fRsKRhk8H5uCK7cHDvUTF5ZsAzztexv@dpg-cplloojgbbvc738qiae0-a.ohio-postgres.render.com/winenot',
+            default='postgres://winenot_user:6fRsKRhk8H5uCK7cHDvUTF5ZsAzztexv@dpg-cplloojgbbvc738qiae0-a/winenot',
             conn_max_age=600
         )
     }
